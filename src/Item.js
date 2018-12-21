@@ -10,7 +10,7 @@ const itemSource = {
     beginDrag(props) {
         console.log("aaaaaaaaaa");
 
-        return props.item
+        return props.item;
     },
     endDrag(props, monitor, component) {
         if (!monitor.didDrop()) {
@@ -33,7 +33,7 @@ class Item extends React.Component {
         const opacity = isDragging ? 0 : 1;
         return connectDragSource(
             
-            <div style={{ opacity }}>
+            <div >
                 <Image alt="" src={item.url} />
             </div>
         );

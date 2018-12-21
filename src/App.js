@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Item from './Item';
 import Target from './Target';
 import HTML5Backend from 'react-dnd-html5-backend';
-import { DargDropContext, DragDropContext } from 'react-dnd';
+import { DragDropContext } from 'react-dnd';
 
 class App extends Component {
   state = {
@@ -64,44 +63,38 @@ class App extends Component {
       }
     ],
   }
+    // onDrag= (id) => {
+    //     console.log("aaaa", id);
+    //     // 
+    // }
 
-  deleteItem = (id) => {
-    console.log("delete");
-  }
-      handleMouseUp = (e) => {
-        console.log(e);
+      handleMouseUp = ( id) => {
+        console.log("DROPED", id );
         
-        const id = this.state.items.id;
-        let x = e.target;
-        // window.removeEventListener('mousemove', this.handleMouseMove);
-        // window.removeEventListener('mouseup', this.handleMouseUp);
-
         const items = this.state.items.map(item => {
             if (item.id === id) {
-                console.log("end point x: ", item.translateX, "end point y: ", item.translateY);
-                console.log("tagName", x.tagName);
+              console.log("end point x: ", item.translateX, "end point y: ", item.translateY);
                 return {
                     ...item,
                     lastTranslateX: item.translateX,
                     lastTranslateY: item.translateY,
+                    
                 }
+               
+             
             } else {
                 return item;
             }
+            
         })
 
-
+        console.log("asasasa");
+        
         this.setState(
             ({
                 items,
-                isDragging: false
-            }),
-            () => {
-                if (this.props.onDragEnd) {
-                    this.props.onDragEnd();
-
-                }
-            }
+                //sDragging: false
+            })
         );
 
     };
@@ -112,21 +105,11 @@ class App extends Component {
   render() {
     return (
       <div className = "App">
-       
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-              
-        </header> */}
-     
-
           <div className="app-container">
           <div className="item-container">
          {
            this.state.items.map((item , index) => (
-             <Item key={item.id} item={item} handleDrop={(e) => this.handleMouseUp(e)} />
+             <Item key={item.id} item={item}  handleDrop={( id) => this.handleMouseUp(id)} />
              
            ))
          }
