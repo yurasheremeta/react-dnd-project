@@ -8,9 +8,10 @@ const Image = styled.img`
 `
 const itemSource = {
     beginDrag(props) {
-        console.log("aaaaaaaaaa");
-
-        return props.item;
+       
+        console.log("prop", props);
+        
+        return props;
     },
     endDrag(props, monitor, component) {
         if (!monitor.didDrop()) {
@@ -29,8 +30,7 @@ function collect(connect, monitor) {
 }
 class Item extends React.Component {
     render() {
-        const { isDragging, connectDragSource, item } = this.props;
-        const opacity = isDragging ? 0 : 1;
+        const { connectDragSource, item } = this.props;
         return connectDragSource(
             
             <div >

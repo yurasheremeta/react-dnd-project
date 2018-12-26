@@ -1,5 +1,5 @@
 import React from 'react';
-import { DropTarget } from 'react-dnd'
+import { DropTarget } from 'react-dnd';
 
 function collect (connect , monitor) {
     return {
@@ -9,12 +9,14 @@ function collect (connect , monitor) {
     }
 }
 
+
 class Target extends React.Component {
     render(){
-        const { connectDropTraget , hovered , item } = this.props
+        const { connectDropTraget  } = this.props
         return connectDropTraget (
             <div className="target">
                    Target
+                
             </div> 
         )
     }
